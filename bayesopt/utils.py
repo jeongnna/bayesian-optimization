@@ -38,9 +38,3 @@ def _params_to_2darray(params):
     n_params = len(params[0])
     params = np.array([list(x.values()) for x in params])
     return params.reshape(-1, n_params)
-
-
-def _acq_pick(surrogate_model, X_candidate, acq_func, pick_func,
-              n_pick=1, acq_kwargs={}, pick_kwargs={}):
-    acq = acq_func(surrogate_model, X_candidate, **acq_kwargs)
-    return pick_func(acq, n_pick, **pick_kwargs)
