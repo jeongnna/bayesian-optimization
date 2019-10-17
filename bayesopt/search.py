@@ -159,6 +159,7 @@ class BayesianSearchCV(EnhancedSearchCV):
         n_init = len(self._X_init)
         self._n_initial_points -= n_init
         self._n_iter -= max(0, self._n_initial_points)
+        self._n_iter = self._n_iter // self.acq_kwargs['n_pick']  #!
 
         # Randomly sample initial points
         for _ in range(self._n_initial_points):

@@ -73,6 +73,8 @@ def pick_argmax_acq(gp, X, kwargs={}):
     for _ in range(n_pick):
         # M-step
         idx = np.nanargmax(acq)
+        if idx in selected:
+            continue
         selected.append(idx)
         # P-step
         L = np.linalg.norm(_gradient_gp_mean(gp, X[idx]))
